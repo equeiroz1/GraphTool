@@ -124,7 +124,7 @@ public class GraphTool extends javax.swing.JFrame {
         System.out.println("["+points.length+"] X: " + point2D.getX() + " Y: " + point2D.getY());
         addPoint(point2D);
         if(opcao == 0 && points.length > 3){
-            Bezier bezier =  new Bezier(points);
+            BezierCurve bezier =  new BezierCurve(points);
             
             for(int x = 0 ; x < bezier.getPointCount() ; x++)
             {
