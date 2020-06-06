@@ -5,6 +5,11 @@
  */
 package graphtool;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
@@ -110,15 +115,20 @@ public class GraphTool extends javax.swing.JFrame {
 
     private void jMenuItemBezierMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemBezierMousePressed
         // TODO add your handling code here:
+        opcao = 0;
         points = new Point2D[0];
     }//GEN-LAST:event_jMenuItemBezierMousePressed
 
     private void jMenuItemHermiteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemHermiteMousePressed
         // TODO add your handling code here:
+        opcao = 1;
+        points = new Point2D[0];
     }//GEN-LAST:event_jMenuItemHermiteMousePressed
 
     private void jMenuItemInterpoladasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemInterpoladasMousePressed
         // TODO add your handling code here:
+        opcao = 2;
+        points = new Point2D[0];
     }//GEN-LAST:event_jMenuItemInterpoladasMousePressed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -128,11 +138,19 @@ public class GraphTool extends javax.swing.JFrame {
         addPoint(point2D);
         if (opcao == 0 && points.length > 3) {
             BezierCurve bezier = new BezierCurve(points);
-
-            for (int x = 0; x < bezier.getPointCount(); x++) {
+            for (int x = 0; x < bezier.getPointCount() - 1; x++) {
                 System.out.println("[" + x + " - Brezier] X: " + bezier.getPoint(x).getX() + " Y: " + bezier.getPoint(x).getY());
-                evt.getComponent().getGraphics().drawLine((int) bezier.getPoint(x).getX(), (int) bezier.getPoint(x).getY(), (int) bezier.getPoint(x).getX(), (int) bezier.getPoint(x).getY());
+                evt.getComponent().getGraphics().drawLine((int) bezier.getPoint(x).getX(), (int) bezier.getPoint(x + 1).getY(), (int) bezier.getPoint(x + 1).getX(), (int) bezier.getPoint(x).getY());
             }
+        } else if (opcao == 1 && points.length == 4) {
+            HermiteCurve hermiteCurve = new HermiteCurve();
+            hermiteCurve.DrawHermiteCurve(evt.getComponent().getGraphics(),
+                     new Point((int) points[0].getX(), (int) points[0].getY()),
+                     new Point((int) points[1].getX(), (int) points[1].getY()),
+                     new Point((int) points[2].getX(), (int) points[2].getY()),
+                     new Point((int) points[3].getX(), (int) points[3].getY()),
+                     10000);
+            points = new Point2D[0];
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 

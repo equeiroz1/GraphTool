@@ -7,9 +7,10 @@ public class BezierCurve {
 
     private static final float AP = 0.5f;
     private Point2D[] bPoints;
-  
+
     /**
      * Creates a new Bezier curve.
+     *
      * @param points
      */
     public BezierCurve(Point2D[] points) {
@@ -62,30 +63,68 @@ public class BezierCurve {
         bPoints[2 * i + 1] = new Point((int) p2X, (int) p2Y);
       }
     }
-  
+    /*public BezierCurve(Point2D[] points) {
+        int n = points.length;
+        if (n <= 3) {
+            return;
+        }
+        double[][] MatrizDeInterpolação
+                = {
+                    {1.0, 0.0, 0.0, 0.0},
+                    {-5.5, 9, -4.5, 1},
+                    {9, -22.5, 18, -4.5},
+                    {-4.5, 13.5, -13.5, 4.5}
+                };
+
+        double[] MatrizX = new double[n];
+        double[] MatrizY = new double[n];
+        for (int posicao = 0; posicao < n; posicao++) {
+            MatrizX[posicao] = 0;
+            MatrizY[posicao] = 0;
+        }
+
+        for (int i = 0; i < MatrizDeInterpolação.length; i++)//Linha
+        {
+            for (int j = 0; j < MatrizDeInterpolação[i].length; j++)//Coluna
+            {
+                MatrizX[i] += MatrizDeInterpolação[i][j] * points[j].getX();
+                MatrizY[i] += MatrizDeInterpolação[i][j] * points[j].getY();
+            }
+        }
+
+        bPoints = new Point2D[n];
+        for (int posicao = 0; posicao < n; posicao++) {
+            bPoints[posicao] = new Point((int) MatrizX[posicao], (int) MatrizY[posicao]);
+        }
+
+    }*/
+
     /**
      * Returns the calculated bezier points.
+     *
      * @return the calculated bezier points
      */
     public Point2D[] getPoints() {
-      return bPoints;
+        return bPoints;
     }
-  
+
     /**
      * Returns the number of bezier points.
+     *
      * @return number of bezier points
      */
     public int getPointCount() {
-      return bPoints.length;
+        return bPoints.length;
     }
-  
+
     /**
      * Returns the bezier points at position i.
+     *
      * @param i
      * @return the bezier point at position i
      */
     public Point2D getPoint(int i) {
-      return bPoints[i];
+        return bPoints[i];
     }
-  
-  }
+
+}
