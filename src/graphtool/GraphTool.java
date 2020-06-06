@@ -30,7 +30,9 @@ public class GraphTool extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItemBezier = new javax.swing.JMenuItem();
+        jMenuItemInterpoladas = new javax.swing.JMenuItem();
+        jMenuItemHermite = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,11 +47,33 @@ public class GraphTool extends javax.swing.JFrame {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Curvas Parametricas");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuItemBezier.setText("Bezier");
+        jMenuItemBezier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBezierActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemBezier);
+
+        jMenuItemInterpoladas.setText("Interpoladas");
+        jMenuItemInterpoladas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInterpoladasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemInterpoladas);
+
+        jMenuItemHermite.setText("Hermite");
+        jMenuItemHermite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemHermiteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemHermite);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -66,6 +90,18 @@ public class GraphTool extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemHermiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHermiteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemHermiteActionPerformed
+
+    private void jMenuItemInterpoladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInterpoladasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemInterpoladasActionPerformed
+
+    private void jMenuItemBezierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBezierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemBezierActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,8 +141,10 @@ public class GraphTool extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemBezier;
+    private javax.swing.JMenuItem jMenuItemHermite;
+    private javax.swing.JMenuItem jMenuItemInterpoladas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
