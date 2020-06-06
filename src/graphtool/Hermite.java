@@ -7,12 +7,9 @@ import java.awt.Graphics;
 public class Hermite{
 
     private Point2D[] hPoints;
+    private double H[] = {2, 1, -2, 1, -3, -2, 3, -1, 0, 1, 0, 0, 1, 0, 0, 0};
+ 
 
-
-    public void StartHermiteCurve(Graphics g)
-    {
-        DrawHermiteCurve(g,p1,p2,p3,p4,140);
-    }
     Vector4 GetHermiteCoeff(double x0, double s0, double x1, double s1) {
 
         Matrix4 basis = new Matrix4(H);
