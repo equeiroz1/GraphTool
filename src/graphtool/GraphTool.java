@@ -6,8 +6,6 @@
 
 package graphtool;
 
-import java.util.Random;
-
 /**
  *
  * @author wisneytaas
