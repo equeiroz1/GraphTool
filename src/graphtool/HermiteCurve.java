@@ -4,12 +4,11 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.Graphics;
 
-public class Hermite{
+public class HermiteCurve{
 
     private Point2D[] hPoints;
     private double H[] = {2, 1, -2, 1, -3, -2, 3, -1, 0, 1, 0, 0, 1, 0, 0, 0};
  
-
     Vector4 GetHermiteCoeff(double x0, double s0, double x1, double s1) {
 
         Matrix4 basis = new Matrix4(H);
