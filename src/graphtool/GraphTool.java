@@ -6,13 +6,17 @@
 
 package graphtool;
 
+import java.awt.Point;
+import java.awt.geom.Point2D;
+
 /**
  *
  * @author wisneytaas
  * @author Ernesto
  */
 public class GraphTool extends javax.swing.JFrame {
-
+    public Point2D[] points = new Point2D[0];
+    public int opcao = 0;
     /** Creates new form GraphTool1 */
     public GraphTool() {
         initComponents();
@@ -36,6 +40,12 @@ public class GraphTool extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -50,25 +60,25 @@ public class GraphTool extends javax.swing.JFrame {
         jMenu1.setText("Curvas Parametricas");
 
         jMenuItemBezier.setText("Bezier");
-        jMenuItemBezier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemBezierActionPerformed(evt);
+        jMenuItemBezier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemBezierMousePressed(evt);
             }
         });
         jMenu1.add(jMenuItemBezier);
 
         jMenuItemInterpoladas.setText("Interpoladas");
-        jMenuItemInterpoladas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemInterpoladasActionPerformed(evt);
+        jMenuItemInterpoladas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemInterpoladasMousePressed(evt);
             }
         });
         jMenu1.add(jMenuItemInterpoladas);
 
         jMenuItemHermite.setText("Hermite");
-        jMenuItemHermite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemHermiteActionPerformed(evt);
+        jMenuItemHermite.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemHermiteMousePressed(evt);
             }
         });
         jMenu1.add(jMenuItemHermite);
@@ -95,18 +105,46 @@ public class GraphTool extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemHermiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHermiteActionPerformed
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemHermiteActionPerformed
-
-    private void jMenuItemInterpoladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInterpoladasActionPerformed
+    private void jMenuItemBezierMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemBezierMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemInterpoladasActionPerformed
+        points = new Point2D[0];
+    }//GEN-LAST:event_jMenuItemBezierMousePressed
 
-    private void jMenuItemBezierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBezierActionPerformed
+    private void jMenuItemHermiteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemHermiteMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemBezierActionPerformed
+    }//GEN-LAST:event_jMenuItemHermiteMousePressed
 
+    private void jMenuItemInterpoladasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemInterpoladasMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemInterpoladasMousePressed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        Point2D point2D = new Point(evt.getX(),evt.getY());
+        System.out.println("["+points.length+"] X: " + point2D.getX() + " Y: " + point2D.getY());
+        addPoint(point2D);
+        if(opcao == 0 && points.length > 3){
+            Bezier bezier =  new Bezier(points);
+            
+            for(int x = 0 ; x < bezier.getPointCount() ; x++)
+            {
+                System.out.println("["+x+" - Brezier] X: " + bezier.getPoint(x).getX() + " Y: " + bezier.getPoint(x).getY());
+                evt.getComponent().getGraphics().drawLine((int)bezier.getPoint(x).getX(), (int)bezier.getPoint(x).getY(), (int)bezier.getPoint(x).getX(), (int)bezier.getPoint(x).getY()); 
+            }
+        }
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void addPoint(Point2D p)
+    {
+        Point2D[] pointsAux = new Point2D[points.length+1];
+        int i = 0;
+        for(i=0;i<points.length;i++)
+        {
+            pointsAux[i] = points[i];
+        }
+        pointsAux[i] = p;
+        points = pointsAux;
+    }
     /**
      * @param args the command line arguments
      */
