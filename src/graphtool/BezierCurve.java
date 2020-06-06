@@ -3,7 +3,7 @@ package graphtool;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
-public class Bezier {
+public class BezierCurve {
 
     private static final float AP = 0.5f;
     private Point2D[] bPoints;
@@ -12,7 +12,7 @@ public class Bezier {
      * Creates a new Bezier curve.
      * @param points
      */
-    public Bezier(Point2D[] points) {
+    public BezierCurve(Point2D[] points) {
       int n = points.length;
       if (n < 3) {
         // Cannot create bezier with less than 3 points
