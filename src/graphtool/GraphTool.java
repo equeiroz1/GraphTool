@@ -138,9 +138,9 @@ public class GraphTool extends javax.swing.JFrame {
         addPoint(point2D);
         if (opcao == 0 && points.length > 3) {
             BezierCurve bezier = new BezierCurve(points);
-            for (int x = 0; x < bezier.getPointCount() - 1; x++) {
+            for (int x = 0; x < bezier.getPointCount(); x++) {
                 System.out.println("[" + x + " - Brezier] X: " + bezier.getPoint(x).getX() + " Y: " + bezier.getPoint(x).getY());
-                evt.getComponent().getGraphics().drawOval((int) bezier.getPoint(x).getX(), (int) bezier.getPoint(x + 1).getY(), 1, 1);
+                evt.getComponent().getGraphics().drawOval((int) bezier.getPoint(x).getX(), (int) bezier.getPoint(x).getY(), 1, 1);
             }
         } else if (opcao == 1 && points.length == 4) {
             HermiteCurve hermiteCurve = new HermiteCurve();
@@ -153,7 +153,7 @@ public class GraphTool extends javax.swing.JFrame {
             points = new Point2D[0];
         } else if (opcao == 2) {
             SplineCurve splineCurve = new SplineCurve(points);
-            for (int x = 0; x < points.length - 1; x++) {
+            for (int x = 0; x < points.length; x++) {
                 System.out.println("[" + x + " - Spline Curve] X: " + splineCurve.getPoint(x)[0] + " Y: " + splineCurve.getPoint(x)[1]);
                 evt.getComponent().getGraphics().drawOval((int) splineCurve.getPoint(x)[0], (int) splineCurve.getPoint(x)[1], 1, 1);
             }
