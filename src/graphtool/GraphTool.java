@@ -12,6 +12,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.JPanel;
 
 /**
  *
@@ -147,19 +150,20 @@ public class GraphTool extends javax.swing.JFrame {
         System.out.println("[" + points.length + "] X: " + point2D.getX() + " Y: " + point2D.getY());
         addPoint(point2D);
         if (opcao == 0 && points.length >= 2) {
+            clearGraphics(evt.getComponent().getGraphics());
             BezierCurve bezier = new BezierCurve(points);
             for (int x = 0; x < bezier.getPointCount(); x++) {
                 Point2D p = bezier.getPoint(x);
-                if(p != null){
+                if (p != null) {
                     System.out.println("[" + x + " - Brezier] X: " + p.getX() + " Y: " + p.getY());
-                    evt.getComponent().getGraphics().drawOval((int)p.getX(), (int)p.getY(), 1, 1);
+                    evt.getComponent().getGraphics().drawOval((int) p.getX(), (int) p.getY(), 1, 1);
                 }
             }
-            if(points.length == 4)
-            {
+            if (points.length == 4) {
                 points = new Point2D[0];
             }
         } else if (opcao == 1 && points.length == 4) {
+            clearGraphics(evt.getComponent().getGraphics());
             HermiteCurve hermiteCurve = new HermiteCurve();
             hermiteCurve.DrawHermiteCurve(evt.getComponent().getGraphics(),
                     new Point((int) points[0].getX(), (int) points[0].getY()),
@@ -185,6 +189,10 @@ public class GraphTool extends javax.swing.JFrame {
         }
         pointsAux[i] = p;
         points = pointsAux;
+    }
+
+    private void clearGraphics(Graphics g) {
+        g.clearRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
     }
 
     /**

@@ -105,7 +105,7 @@ public class BezierCurve {
         if (n < 2) {
             return;
         }
-        int newPoints = 200;
+        int newPoints = 1000;
         if (n == 2) {
             bPoints = new Point2D[newPoints];
             for (double t = 0; t < 1; t += (double) (1.0 / (double) newPoints)) {
