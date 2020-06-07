@@ -62,8 +62,6 @@ public class HermiteCurve{
                 //LineTo(g, x, y);
                 g.drawOval(x, y, 1, 1);
             }
-
-
         }
     }
 
