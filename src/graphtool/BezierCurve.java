@@ -13,7 +13,7 @@ public class BezierCurve {
      *
      * @param points
      */
-    public BezierCurve(Point2D[] points) {
+    /*public BezierCurve(Point2D[] points) {
       int n = points.length;
       if (n < 3) {
         // Cannot create bezier with less than 3 points
@@ -63,7 +63,8 @@ public class BezierCurve {
         bPoints[2 * i + 1] = new Point((int) p2X, (int) p2Y);
       }
     }
-    /*public BezierCurve(Point2D[] points) {
+     */
+ /*public BezierCurve(Point2D[] points) {
         int n = points.length;
         if (n <= 3) {
             return;
@@ -97,7 +98,39 @@ public class BezierCurve {
             bPoints[posicao] = new Point((int) MatrizX[posicao], (int) MatrizY[posicao]);
         }
 
-    }*/
+    }
+     */
+    public BezierCurve(Point2D[] points) {
+        int n = points.length;
+        if (n < 2) {
+            return;
+        }
+        int newPoints = 200;
+        if (n == 2) {
+            bPoints = new Point2D[newPoints];
+            for (double t = 0; t < 1; t += (double) (1.0 / (double) newPoints)) {
+                bPoints[(int) (t * newPoints)] = new Point(
+                        (int) (((1 - t) * points[0].getX()) + (t * points[1].getX())),
+                        (int) (((1 - t) * points[0].getY()) + (t * points[1].getY())));
+            }
+        } else if (n == 3) {
+            bPoints = new Point2D[newPoints];
+            for (double t = 0; t < 1; t += (double) (1.0 / (double) newPoints)) {
+                bPoints[(int) (t * newPoints)] = new Point(
+                        (int) ((Math.pow(1 - t, 2) * points[0].getX()) + (2 * t * (1 - t) * points[1].getX()) + (Math.pow(t, 2.0) * points[2].getX())),
+                        (int) ((Math.pow(1 - t, 2) * points[0].getY()) + (2 * t * (1 - t) * points[1].getY()) + (Math.pow(t, 2.0) * points[2].getY()))
+                );
+            }
+        } else if (n == 4) {
+            bPoints = new Point2D[newPoints];
+            for (double t = 0; t < 1; t += (double) (1.0 / (double) newPoints)) {
+                bPoints[(int) (t * newPoints)] = new Point(
+                        (int) ((Math.pow(1 - t, 3) * points[0].getX()) + (3 * t * Math.pow(1 - t, 2) * points[1].getX()) + (3 * Math.pow(t, 2.0) * (1 - t) * points[2].getX()) + (Math.pow(t, 3.0) * points[3].getX())),
+                        (int) ((Math.pow(1 - t, 3) * points[0].getY()) + (3 * t * Math.pow(1 - t, 2) * points[1].getY()) + (3 * Math.pow(t, 2.0) * (1 - t) * points[2].getY()) + (Math.pow(t, 3.0) * points[3].getY()))
+                );
+            }
+        }
+    }
 
     /**
      * Returns the calculated bezier points.

@@ -40,6 +40,7 @@ public class GraphTool extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemBezier = new javax.swing.JMenuItem();
@@ -58,12 +59,15 @@ public class GraphTool extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 387, Short.MAX_VALUE)
         );
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Bezier");
 
         jMenu1.setText("Curvas Parametricas");
 
@@ -100,13 +104,16 @@ public class GraphTool extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 78, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -117,18 +124,21 @@ public class GraphTool extends javax.swing.JFrame {
         // TODO add your handling code here:
         opcao = 0;
         points = new Point2D[0];
+        jLabel1.setText("Bezier - Esse algoritimo foi implementado para comportar até 4 pontos");
     }//GEN-LAST:event_jMenuItemBezierMousePressed
 
     private void jMenuItemHermiteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemHermiteMousePressed
         // TODO add your handling code here:
         opcao = 1;
         points = new Point2D[0];
+        jLabel1.setText("Hermite - A linha só será representada após de dar 4 clicks");
     }//GEN-LAST:event_jMenuItemHermiteMousePressed
 
     private void jMenuItemInterpoladasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemInterpoladasMousePressed
         // TODO add your handling code here:
         opcao = 2;
         points = new Point2D[0];
+        jLabel1.setText("Curva Interpolada");
     }//GEN-LAST:event_jMenuItemInterpoladasMousePressed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -136,11 +146,18 @@ public class GraphTool extends javax.swing.JFrame {
         Point2D point2D = new Point(evt.getX(), evt.getY());
         System.out.println("[" + points.length + "] X: " + point2D.getX() + " Y: " + point2D.getY());
         addPoint(point2D);
-        if (opcao == 0 && points.length > 3) {
+        if (opcao == 0 && points.length >= 2) {
             BezierCurve bezier = new BezierCurve(points);
             for (int x = 0; x < bezier.getPointCount(); x++) {
-                System.out.println("[" + x + " - Brezier] X: " + bezier.getPoint(x).getX() + " Y: " + bezier.getPoint(x).getY());
-                evt.getComponent().getGraphics().drawOval((int) bezier.getPoint(x).getX(), (int) bezier.getPoint(x).getY(), 1, 1);
+                Point2D p = bezier.getPoint(x);
+                if(p != null){
+                    System.out.println("[" + x + " - Brezier] X: " + p.getX() + " Y: " + p.getY());
+                    evt.getComponent().getGraphics().drawOval((int)p.getX(), (int)p.getY(), 1, 1);
+                }
+            }
+            if(points.length == 4)
+            {
+                points = new Point2D[0];
             }
         } else if (opcao == 1 && points.length == 4) {
             HermiteCurve hermiteCurve = new HermiteCurve();
@@ -207,6 +224,7 @@ public class GraphTool extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemBezier;
