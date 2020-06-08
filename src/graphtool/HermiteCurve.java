@@ -15,6 +15,10 @@ public class HermiteCurve{
     private Point2D[] hPoints;
     private double H[] = {2, 1, -2, 1, -3, -2, 3, -1, 0, 1, 0, 0, 1, 0, 0, 0};
  
+    
+    /**
+     * Get Hermite Coefficient
+     */
     Vector4 GetHermiteCoeff(double x0, double s0, double x1, double s1) {
 
         Matrix4 basis = new Matrix4(H);
@@ -22,6 +26,10 @@ public class HermiteCurve{
         return basis.multiply(v);
     }
 
+        
+    /**
+     * Drawing Hermite Curve
+     */
     void DrawHermiteCurve(Graphics g, Point P0, Point T0, Point P1, Point T1, int numpoints) {
         Vector4 xcoeff = GetHermiteCoeff(P0.getX(), T0.getX(), P1.getX(), T1.getX());
         Vector4 ycoeff = GetHermiteCoeff(P0.getY(), T0.getY(), P1.getY(), T1.getY());
@@ -45,33 +53,10 @@ public class HermiteCurve{
         }
     }
 
-    void DrawHermiteCurve2(Graphics g, Point P0, Point T0, Point P1, Point T1, int numpoints) {
-        Vector4 xcoeff = GetHermiteCoeff(P0.getX(), T0.getX(), P1.getX(), T1.getX());
-        Vector4 ycoeff = GetHermiteCoeff(P0.getY(), T0.getY(), P1.getY(), T1.getY());
-        if (numpoints < 2) {
-            return;
-        }
-        double dt = 1.0 / (numpoints - 1);
-        for (double t = 0; t <= 1; t += dt) {
-            Vector4 vt = new Vector4();
-            vt.setValue(3, 1);
-            for (int i = 2; i >= 0; i--) {
-
-                vt.setValue(i, vt.getValue(i + 1) * t);
-            }
-            int x = (int) Math.round(xcoeff.DotProduct(vt));
-            int y = (int) Math.round(ycoeff.DotProduct(vt));
-            if (t == 0) {
-                // MoveToEx(g, x, y, NULL);
-                g.drawOval(x, y, 1, 1);
-            } else {
-                //LineTo(g, x, y);
-                g.drawOval(x, y, 1, 1);
-            }
-        }
-    }
-
-
+        
+    /**
+     * Vector4 - Auxiliary class
+     */
     class Vector4 {
 
     public double v[] = new double[4];
