@@ -164,18 +164,26 @@ public class GraphTool extends javax.swing.JFrame {
                     new Point((int) points[3].getX(), (int) points[3].getY()),
                     10000);
             points = new Point2D[0];
-        } else if (opcao == 2) {
-            SplineCurve splineCurve = new SplineCurve(points);
-            for (int x = 0; x < points.length; x++) {
-                System.out.println("[" + x + " - Spline Curve] X: " + splineCurve.getPoint(x)[0] + " Y: " + splineCurve.getPoint(x)[1]);
-                evt.getComponent().getGraphics().drawOval((int) splineCurve.getPoint(x)[0], (int) splineCurve.getPoint(x)[1], 1, 1);
+        } else if (opcao == 2 && points.length == 4) {
+            clearGraphics(evt.getComponent().getGraphics());
+            for (double value = 0; value < 1; value += 0.001) {
+                double x = points[0].getX()
+                        + points[1].getX() * value
+                        + points[2].getX() * (value * value)
+                        + points[3].getX() * (value * value * value);
+                double y = points[0].getY()
+                        + points[1].getY() * value
+                        + points[2].getY() * (value * value)
+                        + points[3].getY() * (value * value * value);
+                evt.getComponent().getGraphics().drawOval((int) x, (int) y, 1, 1);
             }
+            points = new Point2D[0];
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 
     /*
     * @pam p Ponto que será adicionado no array
-    */
+     */
     private void addPoint(Point2D p) {
         Point2D[] pointsAux = new Point2D[points.length + 1];
         int i = 0;
