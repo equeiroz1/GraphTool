@@ -12,9 +12,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.util.HashSet;
-import java.util.Set;
-import javax.swing.JPanel;
 
 /**
  *
@@ -145,7 +142,6 @@ public class GraphTool extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemInterpoladasMousePressed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
         Point2D point2D = new Point(evt.getX(), evt.getY());
         System.out.println("[" + points.length + "] X: " + point2D.getX() + " Y: " + point2D.getY());
         addPoint(point2D);
@@ -181,6 +177,9 @@ public class GraphTool extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 
+    /*
+    * @pam p Ponto que será adicionado no array
+    */
     private void addPoint(Point2D p) {
         Point2D[] pointsAux = new Point2D[points.length + 1];
         int i = 0;
