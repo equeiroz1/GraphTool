@@ -3,6 +3,11 @@ package graphtool;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+/**
+ *
+ * @author wisneytaas
+ * @author Ernesto
+ */
 public class BezierCurve {
 
     private static final float AP = 0.5f;

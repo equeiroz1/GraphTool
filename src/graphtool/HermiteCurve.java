@@ -4,6 +4,12 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.Graphics;
 
+/**
+ * HermiteCurve
+ * @author wisneytaas
+ * @author Ernesto
+ */
+
 public class HermiteCurve{
 
     private Point2D[] hPoints;
