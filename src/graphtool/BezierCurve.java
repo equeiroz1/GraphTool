@@ -3,10 +3,16 @@ package graphtool;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+/**
+ * Bezier Curve
+ * @author wisneytaas
+ * @author Ernesto
+ */
 public class BezierCurve {
 
     private static final float AP = 0.5f;
     private Point2D[] bPoints;
+
 
     /**
      * Creates a new Bezier curve.
