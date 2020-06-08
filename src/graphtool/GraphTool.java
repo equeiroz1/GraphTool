@@ -5,16 +5,9 @@
  */
 package graphtool;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.util.HashSet;
-import java.util.Set;
-import javax.swing.JPanel;
 
 /**
  *
