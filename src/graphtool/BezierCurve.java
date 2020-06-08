@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 
 /**
- *
+ * Bezier Curve
  * @author wisneytaas
  * @author Ernesto
  */
